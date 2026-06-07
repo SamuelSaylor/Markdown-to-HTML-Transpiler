@@ -12,6 +12,11 @@ Sentence -> <p>Sentence</p>
 '''
 import re
 
+
+FILE_TO_CONVERT = "test.md"
+
+
+
 class MDtoHTML:
     def __init__(self,file):
         self.fileContents = []
@@ -49,5 +54,5 @@ class MDtoHTML:
 
         with open(self.filename+".html","w",encoding="utf-8") as fl: fl.write(outcome)
 
-md = MDtoHTML("test.md")
+md = MDtoHTML(FILE_TO_CONVERT)
 md.conversion()
