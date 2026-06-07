@@ -25,13 +25,29 @@ class MDtoHTML:
 
     def conversion(self):
         outcome = ''''''
-        for _,v in enumerate(self.fileContents):
-            outcome+=v
-        with open(self.filename+".html","w",encoding="utf-8") as fl:
-            fl.write(outcome)
+
+        for i,v in enumerate(self.fileContents):
+            line = v
+
+            line = re.sub(r'^### (.+)$', r'<h3>\1</h3>', line)
+            line = re.sub(r'^## (.+)$', r'<h2>\1</h2>', line)
+            line =re.sub(r'^# (.+)$', r'<h1>\1</h1>', line)
             
+            line = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', line)
+            line = re.sub(r'\*(.+?)\*', r'<em>\1</em>', line)
+            line = re.sub(r'`(.+?)`', r'<code>\1</code>', line)
+            line = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2">\1</a>', line)
 
+            line = re.sub(r'^- (.+)$', r'<ul><li>\1</li></ul>', line)
+            line = re.sub(r'^---$', r'<hr>', line)
+            line = re.sub(r'^$', r'<p></p>', line)
 
+            if not line.startswith("<"): line = f'<p>{line}</p>'
+
+            outcome+=line
+            if i!=len(self.fileContents)-1:outcome+="\n"
+
+        with open(self.filename+".html","w",encoding="utf-8") as fl: fl.write(outcome)
 
 md = MDtoHTML("test.md")
 md.conversion()
