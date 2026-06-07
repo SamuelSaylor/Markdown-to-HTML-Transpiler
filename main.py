@@ -28,7 +28,7 @@ class MDtoHTML:
         except: print("Warning: Name inserted not detected as a filetype.")
         
 
-    def htmlstandarization(title,content):
+    def htmlstandarization(self,title,content):
         ret = f"""<!DOCTYPE html>
     <html lang="en">
     <head>
