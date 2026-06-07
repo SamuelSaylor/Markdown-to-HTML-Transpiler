@@ -28,6 +28,20 @@ class MDtoHTML:
         except: print("Warning: Name inserted not detected as a filetype.")
         
 
+    def htmlstandarization(title,content):
+        ret = f"""<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{title}</title>
+    </head>
+    <body>
+    {content}
+    </body>
+    </html>"""
+        return ret
+
     def conversion(self):
         outcome = ''''''
 
@@ -52,7 +66,7 @@ class MDtoHTML:
             outcome+=line
             if i!=len(self.fileContents)-1:outcome+="\n"
 
-        with open(self.filename+".html","w",encoding="utf-8") as fl: fl.write(outcome)
+        with open(self.filename+".html","w",encoding="utf-8") as fl: fl.write(self.htmlstandarization(self.filename,outcome))
 
 md = MDtoHTML(FILE_TO_CONVERT)
 md.conversion()
