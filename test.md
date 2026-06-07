@@ -2,7 +2,7 @@
 
 ### hello
 
-my name is *Samuel*
+my name is *YOUR NAME HERE*
 
 test **test** test **test* notice how there is a missing symbol right there?
 
