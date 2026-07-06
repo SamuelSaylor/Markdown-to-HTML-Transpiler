@@ -13,7 +13,7 @@ Sentence -> <p>Sentence</p>
 import re
 
 
-FILE_TO_CONVERT = "test.md"
+FILE_TO_CONVERT = "README.md"
 
 
 
